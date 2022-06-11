@@ -1,6 +1,9 @@
 name: Front End Workflows
 
 on:
+  push:
+    branches:
+      - master
   pull_request:
     branches:
      - master
