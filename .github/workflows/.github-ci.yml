@@ -2,8 +2,7 @@ name: Front End Workflows
 
 on:
   push:
-    branches:
-      - master
+    branches: ["*"]
   pull_request:
     branches:
      - master
@@ -25,6 +24,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     # needs: test
+    if: github.event.pull_request.merged == true || ${{ github.event_name == 'pull' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v1
