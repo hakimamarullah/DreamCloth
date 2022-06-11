@@ -15,12 +15,12 @@ const Wrapper = styled.div`
 
 const Left = styled.div`
   flex: 1;
-  display: flex;
-  align-items: center;
+  text-align: left;
 `;
 const Center = styled.div`
   flex: 1;
-  text-align: center;
+  display: flex;
+  align-items: flex-end;
 `;
 const Right = styled.div`
   flex: 1;
@@ -35,10 +35,10 @@ const MenuItem = styled.div`
   cursor: pointer;
 `;
 
-const Language = styled.span`
-  font-size: 20px;
-  cursor: pointer;
-`;
+// const Language = styled.span`
+//   font-size: 20px;
+//   cursor: pointer;
+// `;
 
 const SearchContainer = styled.div`
   border: 0.5px solid lightgray;
@@ -46,10 +46,14 @@ const SearchContainer = styled.div`
   align-items: center;
   margin-left: 25px;
   padding: 5px;
+  width: 40vw;
+  height: 5vh;
 `;
 
 const Input = styled.input`
   border: none;
+  width: 95%;
+  height: 95%;
 `;
 
 const Logo = styled.h1`
@@ -60,14 +64,13 @@ const Navbar = () => {
     <Container>
       <Wrapper>
         <Left>
-          <Language>ID</Language>
-          <SearchContainer>
-            <Input />
-            <Search style={{ color: 'gray', fontSize: 16 }} />
-          </SearchContainer>
+          <Logo>DreamCloth</Logo>
         </Left>
         <Center>
-          <Logo>DreamCloth</Logo>
+          <SearchContainer>
+            <Input placeholder='Search'></Input>
+            <Search style={{ color: 'gray', fontSize: 16 }} />
+          </SearchContainer>
         </Center>
         <Right>
           <MenuItem>Login</MenuItem>
