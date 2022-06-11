@@ -24,7 +24,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     # needs: test
-    if: github.event.pull_request.merged == true || ${{ github.event_name == 'pull' }}
+    if: (github.event.pull_request.merged == true || ${{ github.event_name == 'pull' }}) && github.ref_name == 'master'
     steps:
       - name: Checkout code
         uses: actions/checkout@v1
