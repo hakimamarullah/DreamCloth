@@ -9,9 +9,19 @@ on:
      - master
 
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
 
+    steps:
+      - name: Install NodeJs
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      - run: npm install
+      - run: npm test -- --watchAll=false
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
     steps:
       - name: Checkout code
         uses: actions/checkout@v1
