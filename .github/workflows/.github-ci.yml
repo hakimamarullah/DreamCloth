@@ -32,6 +32,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16.x
+          cache: 'npm'
       - run: npm install --legacy-peer-deps
       - run: npm run build --if-present
 
@@ -55,6 +56,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16.x
+          cache: 'npm'
       - run: npm install --legacy-peer-deps
       - run: npm run build --if-present
 
@@ -64,5 +66,5 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID_DEV }}
         with:
-          args: deploy --dir=build --development
+          args: deploy --dir=build --prod
           secrets: '["DEV_NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID_DEV"]'
