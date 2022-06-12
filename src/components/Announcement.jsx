@@ -8,6 +8,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   font-weight: 500;
+  margin: 0px 0px 0px 0px;
 `;
 const Announcement = () => {
   return (

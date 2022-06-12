@@ -52,11 +52,10 @@ const Center = styled.div`
 `;
 const Right = styled.div`
   flex: 1;
-  padding: 20px;
+  padding: 10px;
 `;
 const SocialMediaContainer = styled.div`
   display: flex;
-
 `;
 
 const SocialMediaIcon = styled.div`
@@ -72,7 +71,7 @@ const SocialMediaIcon = styled.div`
   cursor: pointer;
   transition: all 0.4s ease;
 
-  &:hover{
+  &:hover {
     transform: scale(1.1);
   }
 `;
@@ -84,10 +83,10 @@ const ContactItem = styled.div`
 `;
 
 const Payment = styled.img`
-width: 300px;
-height: 150px;
-object-fit: cover;
-`
+  width: 300px;
+  height: 150px;
+  object-fit: cover;
+`;
 const Footer = () => {
   return (
     <Container>
@@ -124,18 +123,18 @@ const Footer = () => {
         <Title>Contact Us</Title>
 
         <ContactItem>
-          <LocationCity style={{marginRight:"5px"}}/>
+          <LocationCity style={{ marginRight: '5px' }} />
           Jakarta, Indonesia
         </ContactItem>
         <ContactItem>
-          <WhatsApp style={{marginRight:"5px"}}/>
+          <WhatsApp style={{ marginRight: '5px' }} />
           +62 852-9622-7777
         </ContactItem>
         <ContactItem>
-          <Mail style={{marginRight:"5px"}}/>
+          <Mail style={{ marginRight: '5px' }} />
           dreamcloth@gmail.com
         </ContactItem>
-        <Payment src="/images/payment.png" />
+        <Payment src='/images/payment.png' />
       </Right>
     </Container>
   );

@@ -67,6 +67,9 @@ const Circle = styled.div`
   position: absolute;
 `;
 
+
+
+
 const Product = ({ item }) => {
   return (
     <Container>
@@ -83,6 +86,7 @@ const Product = ({ item }) => {
           <FavoriteBorderOutlined />
         </Icon>
       </Info>
+     
     </Container>
   );
 };
