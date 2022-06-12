@@ -4,7 +4,7 @@ import { Search, ShoppingCartOutlined } from '@material-ui/icons';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  height: 90px;
+  height: 60px;
 `;
 
 const Wrapper = styled.div`
@@ -19,8 +19,8 @@ const Left = styled.div`
 `;
 const Center = styled.div`
   flex: 1;
-  display: flex;
-  align-items: flex-end;
+  position: relative;
+  border: none;
 `;
 const Right = styled.div`
   flex: 1;
@@ -41,19 +41,22 @@ const MenuItem = styled.div`
 // `;
 
 const SearchContainer = styled.div`
-  border: 0.5px solid lightgray;
+border: 1px solid grey;
   display: flex;
   align-items: center;
-  margin-left: 25px;
-  padding: 5px;
-  width: 40vw;
-  height: 5vh;
+  width: 100%;
+  height:100%;
+  position: absolute;
+  border-radius: 7px;
+  overflow: hidden;
 `;
 
 const Input = styled.input`
   border: none;
-  width: 95%;
-  height: 95%;
+  outline: none;
+  height: 100%;
+  padding-left: 10px;
+  flex: 8;
 `;
 
 const Logo = styled.h1`
@@ -69,7 +72,7 @@ const Navbar = () => {
         <Center>
           <SearchContainer>
             <Input placeholder='Search'></Input>
-            <Search style={{ color: 'gray', fontSize: 16 }} />
+            <Search style={{ color: 'gray', fontSize: 20, flex:1}} />
           </SearchContainer>
         </Center>
         <Right>
