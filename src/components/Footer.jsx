@@ -9,9 +9,11 @@ import {
   Mail,
   LocationCity,
 } from '@material-ui/icons';
+import { mobile } from '../responsive';
 
 const Container = styled.div`
   display: flex;
+  ${mobile({flexDirection:"column"})}
 `;
 
 const About = styled.p`
@@ -49,10 +51,12 @@ const Logo = styled.h1`
 const Center = styled.div`
   flex: 1;
   padding: 20px;
+  ${mobile({display:"none"})}
 `;
 const Right = styled.div`
   flex: 1;
   padding: 10px;
+  ${mobile({backgroundColor:"#fff8f8"})}
 `;
 const SocialMediaContainer = styled.div`
   display: flex;

@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons';
 import { sliderItems } from '../data';
+import { mobile } from '../responsive';
 
 const Container = styled.div`
   height: 100vh;
   width: 100%;
   display: flex;
   position: relative;
+  ${mobile({display:"none"})}
 `;
 
 const Arrow = styled.div`
