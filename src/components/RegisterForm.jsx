@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { mobile } from '../responsive';
-
+import { Link } from 'react-router-dom';
 const Container = styled.div`
   width: 100vw;
   height: 50%;
@@ -15,8 +15,7 @@ const Wrapper = styled.div`
   width: 30%;
   padding: 20px;
   padding-top: 2px;
-  ${mobile({width:"75%"})}
-
+  ${mobile({ width: '75%' })}
 `;
 
 const Form = styled.div`
@@ -62,11 +61,6 @@ const Login = styled.div`
   font-size: 15px;
   margin: 15px 0px;
   text-align: center;
-`;
-
-const Link = styled.a`
-  font-size: 15px;
-  cursor: pointer;
 `;
 
 const Text = styled.p``;
@@ -141,7 +135,17 @@ const RegisterForm = () => {
           <Button>Sign Up</Button>
           <Login>
             <Text>
-              Already have an account? <Link href='#'>Login</Link>
+              Already have an account?{' '}
+              <Link
+                style={{
+                  textDecoration: 'none',
+                  fontSize: '15px',
+                  cursor: 'pointer',
+                }}
+                to={'/login'}
+              >
+                Login
+              </Link>
             </Text>
           </Login>
           <LineBreaker>
