@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { mobile } from '../responsive';
+import {Link} from 'react-router-dom'
 const Container = styled.div`
   width: 100vw;
   height: 50%;
@@ -9,8 +10,6 @@ const Container = styled.div`
   flex-wrap: wrap;
   margin-top: 40px;
   margin-bottom: 60px;
-  
-
 `;
 
 const Wrapper = styled.div`
@@ -18,7 +17,7 @@ const Wrapper = styled.div`
   width: 30%;
   padding: 20px;
   padding-top: 2px;
-  ${mobile({width:"75%"})}
+  ${mobile({ width: '75%' })}
 `;
 
 const Form = styled.div`
@@ -48,9 +47,7 @@ const ForgotPassword = styled.div`
   justify-content: flex-end;
   margin: 5px 10px 0px 0px;
 `;
-const Link = styled.a`
-  font-size: 15px;
-`;
+
 
 const Text = styled.p``;
 
@@ -133,7 +130,12 @@ const LoginForm = () => {
           <Input placeholder='Password' />
           <ForgotPassword>
             <Text>
-              <Link href='#' style={{ fontSize: '13px' }}>
+              <Link style={{
+                  textDecoration: 'none',
+                  fontSize: '13px',
+                  cursor: 'pointer',
+                }}
+                to={'/'}>
                 Forgot Password?
               </Link>
             </Text>
@@ -141,7 +143,17 @@ const LoginForm = () => {
           <Button>Sign In</Button>
           <Register>
             <Text>
-              Doesn't have an account? <Link href='#'>Register</Link>
+              Doesn't have an account?{' '}
+              <Link
+                style={{
+                  textDecoration: 'none',
+                  fontSize: '15px',
+                  cursor: 'pointer',
+                }}
+                to={'/register'}
+              >
+                Register
+              </Link>
             </Text>
           </Register>
 
