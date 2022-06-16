@@ -5,9 +5,10 @@ import Announcement from '../components/Announcement';
 import Footer from '../components/Footer';
 import { Remove, Add } from '@material-ui/icons';
 import { mobile } from '../responsive';
-import { publicRequest, userRequest } from '../axiosInstance';
+import { userRequest } from '../axiosInstance';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { addProduct } from '../redux/cartRedux';
 
 const Container = styled.div``;
 
@@ -126,7 +127,7 @@ const Product = () => {
   const [color, setColor] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState('');
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getProduct = async () => {
@@ -147,6 +148,10 @@ const Product = () => {
       quantity < product.stock && setQuantity(quantity + 1);
     }
   };
+
+  const handleCart = ()=>{
+    dispatch(addProduct({...product, quantity, color, size}))
+  }
 
   return (
     <Container>
@@ -169,7 +174,8 @@ const Product = () => {
             </Filter>
             <Filter>
               <FilterTitle>Size</FilterTitle>
-              <FilterSize>
+              <FilterSize defaultValue="" onChange={(e)=> setSize(e.target.value)}>
+                <FilterSizeOption key="disabled" disabled selected={"choose size"}>choose size</FilterSizeOption>
                 {product.size?.map((s) => (
                   <FilterSizeOption key={s}>{s}</FilterSizeOption>
                 ))}
@@ -189,7 +195,7 @@ const Product = () => {
                 onClick={() => handleQuantity('increase')}
               />
             </AmountContainer>
-            <Button>ADD TO CART</Button>
+            <Button onClick={()=> handleCart()}>ADD TO CART</Button>
           </AddContainer>
         </Info>
       </Wrapper>

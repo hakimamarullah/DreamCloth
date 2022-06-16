@@ -4,6 +4,7 @@ import { Search, ShoppingCartOutlined } from '@material-ui/icons';
 import styled from 'styled-components';
 import { mobile } from '../responsive';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Container = styled.div`
   height: 60px;
@@ -66,6 +67,8 @@ const Logo = styled.h1`
   ${mobile({ fontSize: '18px', padding: '5px' })}
 `;
 const Navbar = () => {
+  const quantity = useSelector(state=> state.cart.quantity)
+  const user = useSelector(state=> state.user.currentUser)
   return (
     <Container>
       <Wrapper>
@@ -75,7 +78,7 @@ const Navbar = () => {
           </Link>
         </Left>
         <Center>
-          <SearchContainer>
+          <SearchContainer style={{display: !user && "none"}}>
             <Input placeholder='Search'></Input>
             <Search style={{ color: 'gray' }} />
           </SearchContainer>
@@ -96,7 +99,7 @@ const Navbar = () => {
 
           <Link style={{ textDecoration: 'none', color: 'black' }} to={'/cart'}>
             <MenuItem>
-              <Badge overlap='rectangular' badgeContent={4} color='primary'>
+              <Badge style={{display: !user && "none"}}overlap='rectangular' badgeContent={quantity} color='primary' showZero>
                 <ShoppingCartOutlined />
               </Badge>
             </MenuItem>

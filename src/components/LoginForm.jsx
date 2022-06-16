@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { mobile } from '../responsive';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { login } from '../redux/APICalls';
+import { useDispatch, useSelector } from 'react-redux';
 const Container = styled.div`
   width: 100vw;
   height: 50%;
@@ -48,7 +51,6 @@ const ForgotPassword = styled.div`
   margin: 5px 10px 0px 0px;
 `;
 
-
 const Text = styled.p``;
 
 const Button = styled.button`
@@ -66,6 +68,11 @@ const Button = styled.button`
 
   &:hover {
     opacity: 1;
+  }
+
+  &:disabled{
+    opacity: 0.3;
+    cursor: not-allowed;
   }
 `;
 
@@ -121,26 +128,37 @@ const GoogleButton = styled.button`
   padding-right: 20px;
 `;
 const LoginForm = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const {isFetching} = useSelector(state=> state.user);
+  const dispatch = useDispatch();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    login(dispatch, { username, password });
+  };
   return (
     <Container>
       <Wrapper>
         <Title>Sign In</Title>
         <Form>
-          <Input placeholder='Email' />
-          <Input placeholder='Password' />
+          <Input placeholder='Username' onChange={e=> setUsername(e.target.value)}/>
+          <Input type='password' placeholder='Password' onChange={e=> setPassword(e.target.value)} />
           <ForgotPassword>
             <Text>
-              <Link style={{
+              <Link
+                style={{
                   textDecoration: 'none',
                   fontSize: '13px',
                   cursor: 'pointer',
                 }}
-                to={'/'}>
+                to={'/'}
+              >
                 Forgot Password?
               </Link>
             </Text>
           </ForgotPassword>
-          <Button>Sign In</Button>
+          <Button onClick={handleLogin} disabled={isFetching}>Sign In</Button>
           <Register>
             <Text>
               Doesn't have an account?{' '}
