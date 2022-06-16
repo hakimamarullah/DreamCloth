@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Product from './Product';
-import axios from 'axios';
 import { userRequest } from '../axiosInstance';
-const BASE_URL = 'http://localhost:8080/api/v1/products';
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
