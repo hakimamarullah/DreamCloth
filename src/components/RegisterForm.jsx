@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { mobile } from '../responsive';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { signUp } from '../redux/APICalls';
 const Container = styled.div`
   width: 100vw;
   height: 50%;
@@ -117,22 +120,60 @@ const LineBreaker = styled.div`
   font-weight: 600;
   margin: 10px 10px 0px 0px;
 `;
+
+const Error = styled.span`
+  color: red;
+  margin-top: 5px;
+`;
 const RegisterForm = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
+  const [fullName, setFullName] = useState('');
+  const { isFetching, error, message } = useSelector((state) => state.register);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    await signUp(dispatch, { fullName, email, password, phone });
+    if (!error) {
+      navigate('/login');
+    }
+  };
   return (
     <Container>
       <Wrapper>
         <Title>Register Account</Title>
         <Form>
-          <Input placeholder='Full Name' />
-          <Input placeholder='Email' />
-          <Input placeholder='Phone Number' />
-          <Input placeholder='Password' />
+          <Input
+            placeholder='Full Name'
+            onChange={(e) => setFullName(e.target.value)}
+            required
+          />
+          <Input
+            placeholder='Email'
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <Input
+            placeholder='Phone Number'
+            onChange={(e) => setPhone(e.target.value)}
+            required
+          />
+          <Input
+            placeholder='Password'
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
           <Input placeholder='Confirm Password' />
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
-          <Button>Sign Up</Button>
+          <Button onClick={handleRegister} disabled={isFetching}>
+            Sign Up
+          </Button>
+          {error && <Error>{message}</Error>}
           <Login>
             <Text>
               Already have an account?{' '}

@@ -12,9 +12,10 @@ import {
   Navigate,
 } from 'react-router-dom';
 import Success from './pages/Success';
+import { useSelector } from 'react-redux';
 
 const App = () => {
-  const user = false;
+  const {currentUser} = useSelector(state=> state.user)
   return (
     <Router>
       <Routes>
@@ -24,13 +25,13 @@ const App = () => {
         <Route exact path='/product/:id' element={<Product />} />
         <Route
           exact path='/login'
-          element={user ? <Navigate to='/' replace /> : <Login />}
+          element={currentUser ? <Navigate to='/' replace /> : <Login />}
         />
         <Route
           exact path='/Register'
-          element={user ? <Navigate to='/' replace /> : <Register />}
+          element={currentUser ? <Navigate to='/' replace /> : <Register />}
         />
-        <Route path='/cart' element={<Cart />} />
+        <Route path='/cart' element={currentUser ? <Cart/>: <Navigate to='/login'/>} />
       </Routes>
     </Router>
   );

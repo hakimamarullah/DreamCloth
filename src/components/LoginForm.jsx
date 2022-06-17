@@ -28,12 +28,19 @@ const Form = styled.div`
   flex-direction: column;
 `;
 
-const Input = styled.input`
+const Input = styled.input.attrs({required:true})`
   flex: 1;
   min-width: 40%;
+  font-size: 17px;
   padding: 10px;
-  margin: 20px 10px 0px 0px;
+  margin: 5px 10px 0px 0px;
   outline-color: #04d4f0;
+`;
+
+const Label = styled.span`
+  color: 'black';
+  margin-top: 30px;
+  font-weight: 600;
 `;
 
 const Title = styled.h1`
@@ -70,7 +77,7 @@ const Button = styled.button`
     opacity: 1;
   }
 
-  &:disabled{
+  &:disabled {
     opacity: 0.3;
     cursor: not-allowed;
   }
@@ -127,13 +134,19 @@ const GoogleButton = styled.button`
   padding-left: 0px;
   padding-right: 20px;
 `;
+
+const Error = styled.span`
+  color: red;
+  margin-top: 10px;
+`;
 const LoginForm = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const {isFetching} = useSelector(state=> state.user);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const { isFetching, error } = useSelector((state) => state.user);
+  const userPayload = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     login(dispatch, { username, password });
   };
@@ -142,8 +155,20 @@ const LoginForm = () => {
       <Wrapper>
         <Title>Sign In</Title>
         <Form>
-          <Input placeholder='Username' onChange={e=> setUsername(e.target.value)}/>
-          <Input type='password' placeholder='Password' onChange={e=> setPassword(e.target.value)} />
+          <Label>Username</Label>
+          <Input
+            type='email'
+            placeholder='Username'
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <Label>Password</Label>
+          <Input
+            type='password'
+            placeholder='Password'
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
           <ForgotPassword>
             <Text>
               <Link
@@ -158,10 +183,13 @@ const LoginForm = () => {
               </Link>
             </Text>
           </ForgotPassword>
-          <Button onClick={handleLogin} disabled={isFetching}>Sign In</Button>
+          <Button onClick={handleLogin} disabled={isFetching}>
+            Sign In
+          </Button>
+          {error && <Error>{userPayload.errorMessage}</Error>}
           <Register>
             <Text>
-              Doesn't have an account?{' '}
+              Doesn't have an account?
               <Link
                 style={{
                   textDecoration: 'none',
