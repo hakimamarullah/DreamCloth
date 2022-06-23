@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
-console.log(BASE_URL)
+const BASE_URL = process.env.REACT_APP_API_URL;
 const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
 const currentUser = user && JSON.parse(user)?.currentUser;
 const accessToken = currentUser?.accessToken;
