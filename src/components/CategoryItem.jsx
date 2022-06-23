@@ -1,17 +1,21 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-
+import { mobile } from '../responsive'
 const Container = styled.div`
     height: 70vh;
     padding: 3px;
     flex: 1;
     position: relative;
+    
 `
 
 const Image = styled.img`
     height: 100%;
     width: 100%;
     object-fit: cover;
+    ${mobile({height:"30vh"})}
+   
 `
 
 const Info = styled.div`
@@ -41,11 +45,13 @@ const Button = styled.button`
 const CategoryItem = ({item}) => {
   return (
    <Container>
-        <Image src={item.img}/>
+       <Link to={`/products/${item.cat}`}>
+       <Image src={item.img}/>
         <Info>
             <Title>{item.title}</Title>
             <Button>SHOP NOW</Button>
         </Info>
+       </Link>
    </Container>
   )
 }
