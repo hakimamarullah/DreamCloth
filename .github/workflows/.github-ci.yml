@@ -21,7 +21,7 @@ jobs:
   #         node-version: 16.x
   #     - run: npm install
   #     - run: npm test -- --watchAll=false
-  deploy-prod:
+  deploy:
     runs-on: ubuntu-latest
     # needs: test
     if: github.ref_name == 'master'
@@ -32,39 +32,17 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16.x
-          cache: 'npm'
       - run: npm install --legacy-peer-deps
       - run: npm run build --if-present
+        env:
+          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
 
       - name: Deploy to netlify
         uses: netlify/actions/cli@master
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
         with:
           args: deploy --dir=build --prod
-          secrets: '["DEV_NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
-  
-  deploy-dev:
-    runs-on: ubuntu-latest
-    # needs: test
-    if: github.ref_name == 'dev'
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v1
-      - name: Install NodeJs
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16.x
-          cache: 'npm'
-      - run: npm install --legacy-peer-deps
-      - run: npm run build --if-present
-
-      - name: Deploy to netlify
-        uses: netlify/actions/cli@master
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID_DEV }}
-        with:
-          args: deploy --dir=build --prod
-          secrets: '["DEV_NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID_DEV"]'
+          secrets: '["DEV_NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID", "REACT_APP_API_URL"]'
