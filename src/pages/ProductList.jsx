@@ -7,10 +7,13 @@ import Footer from '../components/Footer';
 import { mobile } from '../responsive';
 import { useLocation } from 'react-router-dom';
 import NavbarSticky from '../components/NavbarSticky';
-const Container = styled.div``;
+const Container = styled.div`
+
+`;
 
 const Title = styled.h1`
   margin: 20px;
+  margin-top: 100px;
 `;
 
 const FilterContainer = styled.div`
