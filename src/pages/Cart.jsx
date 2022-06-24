@@ -7,8 +7,9 @@ import Footer from '../components/Footer';
 import { mobile } from '../responsive';
 import StripeCheckout from 'react-stripe-checkout';
 import { userRequest } from '../axiosInstance';
-import { useNavigate } from "react-router";
+import { useNavigate } from 'react-router';
 import NavbarSticky from '../components/NavbarSticky';
+import { Link } from 'react-router-dom';
 
 const KEY = process.env.REACT_APP_STRIPE_KEY;
 const Container = styled.div``;
@@ -29,16 +30,6 @@ const Wrapper = styled.div`
   padding: 20px;
   margin-top: 100px;
   ${mobile({ padding: '10px' })}
-`;
-
-const TopTexts = styled.div`
-  ${mobile({ display: 'none' })}
-`;
-
-const TopText = styled.span`
-  text-decoration: underline;
-  cursor: pointer;
-  margin: 0px 10px;
 `;
 
 const TopButton = styled.button`
@@ -177,7 +168,9 @@ const Cart = () => {
           tokenId: stripeToken.id,
           amount: cart.total * 100,
         });
-        navigate('/success', {state:{stripeData: res.data, products: cart}});
+        navigate('/success', {
+          state: { stripeData: res.data, products: cart },
+        });
       } catch (err) {}
     };
     stripeToken && makePayment();
@@ -185,18 +178,17 @@ const Cart = () => {
 
   return (
     <Container>
-      <NavbarSticky/>
+      <NavbarSticky />
       <Announcement />
       <Wrapper>
         <Title>Your Cart</Title>
         <Top>
-          <TopButton>SHOP NOW</TopButton>
-
-          <TopTexts>
-            <TopText>Your Bag(2)</TopText>
-            <TopText>Wishlist(12)</TopText>
-          </TopTexts>
-          <TopButton type='filled'>CHECKOUT</TopButton>
+          <Link
+            style={{ textDecoration: 'none', color: 'black' }}
+            to={'/products'}
+          >
+            <TopButton>SHOP NOW</TopButton>
+          </Link>
         </Top>
         <Bottom>
           <Info>
