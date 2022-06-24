@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Announcement from '../components/Announcement';
-import Navbar from '../components/Navbar';
 import Products from '../components/Products';
 import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
 import { mobile } from '../responsive';
 import { useLocation } from 'react-router-dom';
+import NavbarSticky from '../components/NavbarSticky';
 const Container = styled.div``;
 
 const Title = styled.h1`
@@ -52,7 +52,7 @@ const ProductList = () => {
   };
   return (
     <Container>
-      <Navbar />
+      <NavbarSticky/>
       <Announcement />
       <Title>{category}</Title>
       <FilterContainer>

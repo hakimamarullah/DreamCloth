@@ -4,11 +4,11 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Announcement from '../components/Announcement';
 import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
 import { mobile } from '../responsive';
 import StripeCheckout from 'react-stripe-checkout';
 import { userRequest } from '../axiosInstance';
 import { useNavigate } from "react-router";
+import NavbarSticky from '../components/NavbarSticky';
 
 const KEY = process.env.REACT_APP_STRIPE_KEY;
 const Container = styled.div``;
@@ -27,6 +27,7 @@ const Top = styled.div`
 
 const Wrapper = styled.div`
   padding: 20px;
+  margin-top: 100px;
   ${mobile({ padding: '10px' })}
 `;
 
@@ -184,7 +185,7 @@ const Cart = () => {
 
   return (
     <Container>
-      <Navbar />
+      <NavbarSticky/>
       <Announcement />
       <Wrapper>
         <Title>Your Cart</Title>

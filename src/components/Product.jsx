@@ -34,6 +34,7 @@ const Container = styled.div`
   background-color: #f5fbfd;
   align-content: center;
   justify-content: center;
+  
 
   &:hover ${Info} {
     opacity: 1;
@@ -68,6 +69,7 @@ const Circle = styled.div`
   background-color: white;
   position: absolute;
 `;
+
 
 
 

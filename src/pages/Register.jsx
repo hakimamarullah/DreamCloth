@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import Footer from '../components/Footer'
-import Navbar from '../components/Navbar'
+import NavbarSticky from '../components/NavbarSticky'
 import RegisterForm from '../components/RegisterForm'
 
 const Container = styled.div``
 const Register = () => {
   return (
    <Container>
-    <Navbar/>
+    <NavbarSticky/>
     <RegisterForm/>
     <Footer/>
    </Container>
