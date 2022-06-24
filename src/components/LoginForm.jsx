@@ -11,8 +11,9 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 40px;
+  margin-top: 100px;
   margin-bottom: 60px;
+  z-index: 0;
 `;
 
 const Wrapper = styled.div`

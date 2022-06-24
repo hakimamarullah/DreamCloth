@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Navbar from '../components/Navbar';
 import Announcement from '../components/Announcement';
 import Footer from '../components/Footer';
 import { Remove, Add } from '@material-ui/icons';
@@ -9,23 +8,28 @@ import { userRequest } from '../axiosInstance';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../redux/cartRedux';
+import NavbarSticky from '../components/NavbarSticky';
 
 const Container = styled.div``;
 
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
+  margin-top: 100px;
   ${mobile({ padding: '10px', flexDirection: 'column' })}
 `;
 
 const ImageContainer = styled.div`
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Image = styled.img`
-  width: 100%;
-  height: 90vh;
-  object-fit: cover;
+  width: 80%;
+  height: 70vh;
+  object-fit: scale-down;
   ${mobile({ height: '40vh' })}
 `;
 
@@ -155,7 +159,7 @@ const Product = () => {
 
   return (
     <Container>
-      <Navbar />
+      <NavbarSticky/>
       <Announcement />
       <Wrapper>
         <ImageContainer>
