@@ -9,6 +9,7 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '../redux/cartRedux';
 import NavbarSticky from '../components/NavbarSticky';
+import { formatRupiah } from '../formatRupiah';
 
 const Container = styled.div``;
 
@@ -49,7 +50,7 @@ const Desc = styled.p`
 
 const Price = styled.span`
   font-weight: 200;
-  font-size: 30px;
+  font-size: 28px;
 `;
 
 const FilterTitle = styled.span`
@@ -168,7 +169,7 @@ const Product = () => {
         <Info>
           <Title>{product.productName}</Title>
           <Desc>{product.description}</Desc>
-          <Price>Rp{product.price}</Price>
+          <Price>{formatRupiah(product.price)}</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>

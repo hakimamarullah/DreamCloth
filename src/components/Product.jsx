@@ -14,7 +14,7 @@ const Info = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 0;
+  top: 120px;
   left: 0;
   display: flex;
   align-items: center;
@@ -70,10 +70,6 @@ const Circle = styled.div`
   position: absolute;
 `;
 
-
-
-
-
 const Product = ({ item }) => {
   return (
     <Container>
@@ -93,7 +89,6 @@ const Product = ({ item }) => {
           <FavoriteBorderOutlined />
         </Icon>
       </Info>
-     
     </Container>
   );
 };

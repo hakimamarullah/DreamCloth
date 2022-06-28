@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Product from './Product';
 import { publicRequest } from '../axiosInstance';
+import ProductCard from './ProductCard';
+import { mobile } from '../responsive';
 const Container = styled.div`
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
-  margin: 20px;
+  ${mobile({ flexDirection: 'row',
+          flexWrap: 'wrap',
+          justifyContent: 'center',})}
+  margin: 30px;
 `;
 const Products = ({ cat, filters, sort }) => {
   const [products, setProducts] = useState([]);
@@ -56,10 +59,12 @@ const Products = ({ cat, filters, sort }) => {
   return (
     <Container>
       {cat
-        ? filteredProducts.map((item) => <Product item={item} key={item._id} />)
+        ? filteredProducts.map((item) => (
+            <ProductCard item={item} key={item._id} />
+          ))
         : products
             .slice(0, products.length)
-            .map((item) => <Product item={item} key={item._id} />)}
+            .map((item) => <ProductCard item={item} key={item._id} />)}
     </Container>
   );
 };
