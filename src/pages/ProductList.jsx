@@ -59,7 +59,7 @@ const ProductList = () => {
       <Announcement />
       <Title>{category}</Title>
       <FilterContainer>
-        <Filter>
+        {category && <><Filter>
           <FilterText>Filter Products:</FilterText>
           <Select name='color' onChange={handleFilters}>
             <Option disabled>Color</Option>
@@ -77,15 +77,14 @@ const ProductList = () => {
             <Option>XL</Option>
             <Option>XXL</Option>
           </Select>
-        </Filter>
-        <Filter>
-          <FilterText>Sort Products:</FilterText>
-          <Select onChange={(e) => setSort(e.target.value)}>
-            <Option value='newest'>Newest</Option>
-            <Option value='asc'>Price (ASC)</Option>
-            <Option value='desc'>Price (DESC)</Option>
-          </Select>
-        </Filter>
+        </Filter><Filter>
+            <FilterText>Sort Products:</FilterText>
+            <Select onChange={(e) => setSort(e.target.value)}>
+              <Option value='newest'>Newest</Option>
+              <Option value='asc'>Price (ASC)</Option>
+              <Option value='desc'>Price (DESC)</Option>
+            </Select>
+          </Filter></>}
       </FilterContainer>
       <Products cat={category} filters={filters} sort={sort}/>
       <Newsletter />

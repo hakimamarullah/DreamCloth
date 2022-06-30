@@ -37,6 +37,11 @@ const Button = styled.button`
   color: white;
   background-color: #04d4f0;
   border: none;
+  cursor: pointer;
+
+  &:hover{
+    background-color: rgba(4,212,240,0.8);
+  }
 `;
 const Desc = styled.div`
   font-size: 20px;
